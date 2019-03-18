@@ -8,6 +8,7 @@ class MessagesForm extends Component {
   state = {
     message: ""
   };
+
   componentDidMount() {
     this.props.onFetchChannelMessage(this.props.match.params.channelID);
     this.FetchMessagesByTimeStamp();
@@ -29,7 +30,8 @@ class MessagesForm extends Component {
     event.preventDefault();
     this.props.onPostChannelMessage(
       this.state,
-      this.props.match.params.channelID
+      this.props.match.params.channelID,
+      this.resetForm
     );
   };
 
@@ -48,6 +50,8 @@ class MessagesForm extends Component {
       );
     }
   };
+  resetForm = () => this.setState({ message: "" });
+
   render() {
     if (!this.props.user) return <Redirect to="/" />;
     const messages = this.props.messages.map(message => {
@@ -128,8 +132,8 @@ const mapDispatchToProps = dispatch => {
     onFetchChannelMessage: channelID =>
       dispatch(actionCreators.fetchChannelMessage(channelID)),
 
-    onPostChannelMessage: (channelID, userData) =>
-      dispatch(actionCreators.postChannelMessage(channelID, userData)),
+    onPostChannelMessage: (channelID, userData, reset) =>
+      dispatch(actionCreators.postChannelMessage(channelID, userData, reset)),
 
     onrFetchMessagesByTimeStamp: (channelID, timestamp) =>
       dispatch(actionCreators.fetchMessagesByTimeStamp(channelID, timestamp)),
