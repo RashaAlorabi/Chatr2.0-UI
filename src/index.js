@@ -14,6 +14,9 @@ import App from "./App";
 
 // Store
 import store from "./store";
+import { checkForExpiredToken } from "./store/actions";
+
+store.dispatch(checkForExpiredToken());
 
 ReactDOM.render(
   <Provider store={store}>
