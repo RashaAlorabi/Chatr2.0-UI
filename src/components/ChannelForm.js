@@ -57,7 +57,7 @@ class ChannelForm extends Component {
               value={owner}
               // value={this.props.user.username}
               onChange={this.changeHandler}
-              disabled
+              // disabled
             />
           </div>
           <div className="form-group">
