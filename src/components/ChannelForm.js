@@ -27,7 +27,7 @@ class ChannelForm extends Component {
 
   render() {
     const { name, owner, image_url } = this.state;
-
+    const errors = this.props.errors;
     return (
       <div className="mt-5 p-2 ml-5">
         <form onSubmit={this.submitHandler}>
