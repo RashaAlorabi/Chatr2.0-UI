@@ -283,7 +283,8 @@ body.fixed-nav {
 }
 
 #mainNav.fixed-top.navbar-dark .sidenav-toggler {
-  background-color: #212529;
+  background-color: lightseagreen;
+  overflow: visible;
 }
 
 #mainNav.fixed-top.navbar-dark .sidenav-toggler a i {
@@ -362,7 +363,7 @@ body.sidenav-toggled #mainNav.static-top #sidenavToggler i {
 }
 
 body.sidenav-toggled .navbar-sidenav {
-  width: 55px;
+  width: 50px;
 }
 
 body.sidenav-toggled .navbar-sidenav .nav-link-text {
@@ -393,7 +394,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
 
 #mainNav.navbar-dark .navbar-collapse .navbar-sidenav > .nav-item > .nav-link {
   transition: all 0.2s ease-out;
-  color: #868e96;
+  color: white;
 }
 
 #mainNav.navbar-dark
@@ -431,7 +432,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   > .nav-item
   > .nav-link.active {
   border-left: 3px solid #800c0c;
-  color: #fff;
+  color: white;
 }
 
 #mainNav.navbar-dark
@@ -448,7 +449,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   .sidenav-third-level
   > li
   > a {
-  color: #868e96;
+  color: white;
 }
 
 #mainNav.navbar-dark
@@ -479,7 +480,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   .sidenav-third-level
   > li
   > a:hover {
-  color: #adb5bd;
+  color: white;
 }
 
 #mainNav.navbar-dark
@@ -487,12 +488,14 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   .navbar-nav
   > .nav-item.dropdown
   > .nav-link:after {
-  color: #adb5bd;
+  color: white;
 }
 
 @media (min-width: 992px) {
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav {
-    background: #343a40;
+    background: #009688;
+    overflow-y: auto;
+    margin-right: 50px;
   }
   #mainNav.navbar-dark .navbar-collapse .navbar-sidenav li.active a {
     color: white !important;
@@ -654,7 +657,7 @@ body.sidenav-toggled .navbar-sidenav-tooltip.show {
   max-width: 40rem;
 }
 
-footer.sticky-footer {
+/* footer.sticky-footer {
   position: absolute;
   right: 0;
   bottom: 0;
@@ -662,7 +665,8 @@ footer.sticky-footer {
   height: 56px;
   background-color: #e9ecef;
   line-height: 55px;
-}
+  margin-top: 170px;
+} */
 
 @media (min-width: 992px) {
   footer.sticky-footer {
@@ -673,5 +677,40 @@ footer.sticky-footer {
 @media (min-width: 992px) {
   body.sidenav-toggled footer.sticky-footer {
     width: calc(100% - 55px);
+  }
+}
+/* ChatHistory styles */
+.collection {
+  margin-bottom: 130px;
+  margin-top: -1px;
+}
+.message-date {
+  color: #585858;
+}
+footer {
+  color: white;
+  position: fixed;
+  padding: 0;
+  bottom: 0;
+  left: 0;
+  width: 120%;
+  height: 130px;
+}
+footer .input-field input,
+button {
+  border-color: #ffffff;
+}
+.chip {
+  font-style: italic;
+}
+@media (min-width: 992px) {
+  footer {
+    width: calc(130% - 250px);
+  }
+}
+@media (min-width: 992px) {
+  footer .input-field input,
+  button {
+    width: calc(50% - 250px);
   }
 }
