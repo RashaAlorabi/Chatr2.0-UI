@@ -33,7 +33,7 @@ class App extends Component {
           <PrivateRoute path="/private" component={SuperSecretPage} />
           <Redirect to="/welcome" />
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
       </div>
     );
   }

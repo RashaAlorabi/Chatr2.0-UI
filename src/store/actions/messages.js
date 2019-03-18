@@ -17,7 +17,7 @@ export const fetchChannelMessage = channelID => {
   };
 };
 
-export const postChannelMessage = (userData, channelID) => {
+export const postChannelMessage = (userData, channelID, reset) => {
   return async dispatch => {
     try {
       const res = await instance.post(`channels/${channelID}/send/`, userData);
@@ -27,6 +27,7 @@ export const postChannelMessage = (userData, channelID) => {
         type: actionTypes.POST_CHANNEL_MESSAGE,
         payload: newMessage
       });
+      reset();
     } catch (err) {
       dispatch({
         type: actionTypes.SET_ERRORS,
