@@ -11,12 +11,14 @@ const reducer = (state = initialState, action) => {
         ...state,
         //it's one object
 
-        channel_Messages: action.payload
+        channel_Messages: action.payload,
+        filter_msg: action.payload
       };
     case actionTypes.POST_CHANNEL_MESSAGE:
       return {
         ...state,
-        channel_Messages: state.channel_Messages.concat(action.payload)
+        channel_Messages: state.channel_Messages.concat(action.payload),
+        filter_msg: state.channel_Messages.concat(action.payload)
       };
     case actionTypes.FETCH_MESSAGE_BY_TIME_STAMP:
       return {

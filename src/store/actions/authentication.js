@@ -6,7 +6,8 @@ import * as actionTypes from "./actionTypes";
 // import { setErrors } from "../errors";
 
 const instance = axios.create({
-  baseURL: "https://api-chatr.herokuapp.com/"
+  // baseURL: "https://api-chatr.herokuapp.com/"
+  baseURL: "http://127.0.0.1:8000/"
 });
 
 const setAuthToken = token => {
