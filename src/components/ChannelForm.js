@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 
 // Actions
@@ -30,48 +29,50 @@ class ChannelForm extends Component {
     const errors = this.props.errors;
     return (
       <div className="mt-5 p-2 ml-5">
-        <form onSubmit={this.submitHandler}>
-          {!!errors.length && (
-            <div className="alert alert-danger" role="alert">
-              {errors.map(error => (
-                <p key={error}>{error}</p>
-              ))}
+        {this.props.user && (
+          <form onSubmit={this.submitHandler}>
+            {!!errors.length && (
+              <div className="alert alert-danger" role="alert">
+                {errors.map(error => (
+                  <p key={error}>{error}</p>
+                ))}
+              </div>
+            )}
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="name"
+                name="name"
+                value={name}
+                onChange={this.changeHandler}
+              />
             </div>
-          )}
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="name"
-              name="name"
-              value={name}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="owner"
-              name="owner"
-              value={owner}
-              // value={this.props.user.username}
-              onChange={this.changeHandler}
-              // disabled
-            />
-          </div>
-          <div className="form-group">
-            <input
-              className="form-control"
-              type="text"
-              placeholder="image_url"
-              name="image_url"
-              value={image_url}
-              onChange={this.changeHandler}
-            />
-          </div>
-          <input className="btn btn-primary" type="submit" />
-        </form>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="owner"
+                name="owner"
+                // value={owner}
+                value={this.props.user.username}
+                onChange={this.changeHandler}
+                disabled
+              />
+            </div>
+            <div className="form-group">
+              <input
+                className="form-control"
+                type="text"
+                placeholder="image_url"
+                name="image_url"
+                value={image_url}
+                onChange={this.changeHandler}
+              />
+            </div>
+            <input className="btn btn-primary" type="submit" />
+          </form>
+        )}
       </div>
     );
   }

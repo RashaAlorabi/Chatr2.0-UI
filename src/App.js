@@ -6,7 +6,7 @@ import main from "./assets/js/main";
 
 // Components
 import NavBar from "./components/Navigation/NavBar";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import PrivateRoute from "./components/PrivateRoute";
 import Welcome from "./components/Welcome";
 import RegistrationForm from "./components/RegistrationForm";
