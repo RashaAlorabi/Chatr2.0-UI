@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import * as actionCreators from "../store/actions";
-import { Redirect, Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import "react-notifications/lib/notifications.css";
 
 class MessagesForm extends Component {
   timer = 0;
@@ -53,6 +54,7 @@ class MessagesForm extends Component {
   resetForm = () => this.setState({ message: "" });
 
   render() {
+    const errors = this.props.errors;
     if (!this.props.user) return <Redirect to="/" />;
     const messages = this.props.messages.map(message => {
       return (
@@ -77,19 +79,19 @@ class MessagesForm extends Component {
         </li>
       );
     });
-    const errors = this.props.errors;
+
     return (
       <div>
         <ul className="collection">{messages}</ul>
         <footer className="teal">
           <form className="container" onSubmit={this.submitHandler}>
-            {/* {!!errors.length && (
+            {!!errors.length && (
               <div className="alert alert-danger" role="alert">
                 {errors.map(error => (
                   <p key={error}>{error}</p>
                 ))}
               </div>
-            )} */}
+            )}
             <div className="row">
               <div className="input-field col s10">
                 <i className="prefix mdi-communication-chat" />
@@ -101,7 +103,10 @@ class MessagesForm extends Component {
                   onChange={this.ChangeHandler}
                 />
                 <span className="chip left">
-                  <img src="//robohash.org/503483?set=set2&bgset=bg2&size=70x70" />
+                  <img
+                    src="//robohash.org/503483?set=set2&bgset=bg2&size=70x70"
+                    alt="ChannelForm"
+                  />
                   <span>{this.props.user.username}</span>
                 </span>
               </div>

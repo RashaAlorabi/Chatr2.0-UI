@@ -1,6 +1,5 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
-import { resetErrors } from "./errors";
 
 import * as actionTypes from "./actionTypes";
 
