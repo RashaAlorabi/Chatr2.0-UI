@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import * as actionCreators from "../store/actions";
 import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import "react-notifications/lib/notifications.css";
+// import "react-notifications/lib/notifications.css";
 
 class MessagesForm extends Component {
   timer = 0;
@@ -129,7 +129,7 @@ const mapStateToProps = state => {
   return {
     errors: state.errors.errors,
     user: state.auth.user,
-    messages: state.messages.channel_Messages
+    messages: state.messages.filter_msg
   };
 };
 const mapDispatchToProps = dispatch => {

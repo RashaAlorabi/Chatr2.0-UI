@@ -4,7 +4,8 @@ import * as actionTypes from "./actionTypes";
 import { resetErrors } from "./errors";
 
 const instance = axios.create({
-  baseURL: "https://api-chatr.herokuapp.com/"
+  // baseURL: "https://api-chatr.herokuapp.com/"
+  baseURL: "http://127.0.0.1:8000/"
 });
 
 export const createChannels = (userData, history) => {
@@ -36,5 +37,17 @@ export const fetchChannels = () => {
         payload: responce
       });
     } catch (err) {}
+  };
+};
+
+export const joinChannel = channelID => {
+  return async dispatch => {
+    try {
+      const request = await instance.put(`channels/${channelID}/update`);
+      const channel = request.data;
+      console.log(channel);
+    } catch (err) {
+      console.log(err.responce);
+    }
   };
 };
