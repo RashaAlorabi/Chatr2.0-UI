@@ -4,16 +4,23 @@ import { Link } from "react-router-dom";
 // Components
 import SideNav from "./SideNav";
 import AuthButton from "./AuthButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faComments } from "@fortawesome/free-solid-svg-icons";
 
 class NavBar extends Component {
   render() {
     return (
       <nav
-        className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+        className="navbar navbar-expand-lg bg-light fixed-top text-light"
         id="mainNav"
       >
-        <Link className="navbar-brand" to="/welcome">
-          Chatr2.0
+        <i className="fas fa-comments" />
+        <Link
+          className="navbar-brand 
+        "
+          to="/welcome"
+        >
+          <FontAwesomeIcon icon={faComments} /> CODERSCHAT
         </Link>
         <button
           className="navbar-toggler navbar-toggler-right"
@@ -26,10 +33,9 @@ class NavBar extends Component {
         >
           <span className="navbar-toggler-icon" />
         </button>
-        <div className="collapse navbar-collapse" id="navbarResponsive">
-          <SideNav />
-          <AuthButton />
-        </div>
+
+        {/* <SideNav /> */}
+        <AuthButton />
       </nav>
     );
   }

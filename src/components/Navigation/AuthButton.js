@@ -22,12 +22,12 @@ class AuthButton extends Component {
     let buttons;
     if (!this.props.user) {
       buttons = [
-        <li key="loginButton" className="nav-item">
+        <li key="loginButton" className="nav-item ">
           <Link to="/login" className="nav-link">
             <FontAwesomeIcon icon={faSignInAlt} /> Login
           </Link>
         </li>,
-        <li key="signupButton" className="nav-item">
+        <li key="signupButton" className="nav-item ">
           <Link to="/signup" className="nav-link">
             <FontAwesomeIcon icon={faUserPlus} /> Signup
           </Link>
@@ -49,7 +49,7 @@ class AuthButton extends Component {
     }
 
     return (
-      <ul className="navbar-nav ml-auto">
+      <ul className="navbar-nav ml-auto text-light">
         {/* <span className="navbar-text">{this.props.user.username}</span> */}
         {buttons}
       </ul>
