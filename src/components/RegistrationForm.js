@@ -32,7 +32,7 @@ class RegistationForm extends Component {
     const { username, password } = this.state;
     const errors = this.props.errors;
     return (
-      <div className="card col-6 mx-auto p-0 mt-5">
+      <div className="card col-6 mx-auto p-0 " style={{ marginTop: 150 }}>
         <div className="card-body">
           <h5 className="card-title mb-4">
             {type === "login"

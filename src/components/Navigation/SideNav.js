@@ -11,16 +11,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 // Components
-import ChannelNavLink from "./ChannelNavLink";
+// import ChannelNavLink from "./ChannelNavLink";
+// import SuperSecretPage from "../SuperSecretPage";
 
 class SideNav extends React.Component {
   state = { collapsed: false };
 
-  componentDidMount() {
-    if (this.props.user) {
-      this.props.onFetchChannels();
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.user) {
+  //     this.props.onFetchChannels();
+  //   }
+  // }
   // componentDidUpdate(prevState) {
   //   if (prevState.user !== this.props.user) {
   //     if (this.props.user) {
@@ -30,9 +31,10 @@ class SideNav extends React.Component {
   // }
 
   render() {
-    const channelLinks = this.props.channels.map(channel => (
-      <ChannelNavLink key={channel.name} channel={channel} />
-    ));
+    // const channelLinks = this.props.channels.map(channel => (
+    //   <ChannelNavLink key={channel.name} channel={channel} />
+    //   /* <SuperSecretPage key={channel.name} channel={channel} /> */
+    // ));
     return (
       <div className="smooth-scroll">
         {this.props.user && (
@@ -47,7 +49,7 @@ class SideNav extends React.Component {
                 <FontAwesomeIcon icon={faPlusCircle} />
               </Link>
             </li>
-            {channelLinks}
+            {/* {channelLinks} */}
           </ul>
         )}
 
@@ -72,15 +74,16 @@ class SideNav extends React.Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   user: state.auth.user,
   channels: state.channels.channels
 });
 
 const mapDispatchToProps = dispatch => {
-  return {
-    onFetchChannels: () => dispatch(actionCreators.fetchChannels())
-  };
+  // return {
+  //   onFetchChannels: () => dispatch(actionCreators.fetchChannels())
+  // };
 };
 
 export default connect(
