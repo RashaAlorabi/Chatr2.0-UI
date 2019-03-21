@@ -46,6 +46,10 @@ export const joinChannel = channelID => {
       const request = await instance.put(`channels/${channelID}/update`);
       const channel = request.data;
       console.log(channel);
+      dispatch({
+        type: actionTypes.JOIN_CHANNEL,
+        payload: channel
+      });
     } catch (err) {
       console.log(err.responce);
     }

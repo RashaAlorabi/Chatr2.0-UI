@@ -6,7 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSignOutAlt,
   faSignInAlt,
-  faUserPlus
+  faUserPlus,
+  faUserCircle
 } from "@fortawesome/free-solid-svg-icons";
 
 // Actions
@@ -22,13 +23,13 @@ class AuthButton extends Component {
     let buttons;
     if (!this.props.user) {
       buttons = [
-        <li key="loginButton" className="nav-item ">
-          <Link to="/login" className="nav-link">
+        <li key="loginButton" className="nav-item  ">
+          <Link to="/login" className="nav-link text-primary">
             <FontAwesomeIcon icon={faSignInAlt} /> Login
           </Link>
         </li>,
-        <li key="signupButton" className="nav-item ">
-          <Link to="/signup" className="nav-link">
+        <li key="signupButton" className="nav-item  ">
+          <Link to="/signup" className="nav-link text-primary">
             <FontAwesomeIcon icon={faUserPlus} /> Signup
           </Link>
         </li>
@@ -37,8 +38,9 @@ class AuthButton extends Component {
       buttons = (
         <div>
           <li className="nav-item">
-            <span className="nav-link" onClick={this.props.logout}>
-              <span className="navbar-text mr-2">
+            <span className="nav-link text-danger " onClick={this.props.logout}>
+              <FontAwesomeIcon icon={faUserCircle} />{" "}
+              <span className="navbar-text mr-2 text-primary">
                 {this.props.user.username}
               </span>
               <FontAwesomeIcon icon={faSignOutAlt} /> Logout
