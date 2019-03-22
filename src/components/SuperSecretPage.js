@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as actionCreators from "../store/actions";
-import ChannelsList from "./ChannelsList";
+import Channel from "./Channel";
 import AddChannelCard from "./AddChannelCard";
 
 class SuperSecretPage extends Component {
@@ -20,8 +20,8 @@ class SuperSecretPage extends Component {
   // }
 
   render() {
-    const channelLinks = this.props.channels.map(channel => (
-      <ChannelsList key={channel.name} channel={channel} />
+    const channelList = this.props.channels.map(channel => (
+      <Channel key={channel.name} channel={channel} />
     ));
 
     //   return (
@@ -48,7 +48,7 @@ class SuperSecretPage extends Component {
 
       <div>
         <AddChannelCard />
-        {channelLinks}
+        {channelList}
       </div>
       // </NavLink>
     );
@@ -61,8 +61,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchChannels: () => dispatch(actionCreators.fetchChannels()),
-    onjoinChannel: channelID => dispatch(actionCreators.joinChannel(channelID))
+    onFetchChannels: () => dispatch(actionCreators.fetchChannels())
+    // onjoinChannel: channelID => dispatch(actionCreators.joinChannel(channelID))
   };
 };
 export default connect(

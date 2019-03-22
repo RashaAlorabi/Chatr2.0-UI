@@ -28,51 +28,62 @@ class ChannelForm extends Component {
     const { name, image_url } = this.state;
     const errors = this.props.errors;
     return (
-      <div className="mt-5 p-2 ml-5">
-        {this.props.user && (
-          <form onSubmit={this.submitHandler}>
-            {!!errors.length && (
-              <div className="alert alert-danger" role="alert">
-                {errors.map(error => (
-                  <p key={error}>{error}</p>
-                ))}
-              </div>
+      <div
+        className="gridcard col-6 mx-auto p-0  rounded-pill"
+        style={{ marginTop: 280 }}
+      >
+        <div id="login">
+          <h2>
+            <span className="fontawesome-lock" />
+            Create New Channel:
+          </h2>
+          <div className="mt-5 p-2 ml-5 ">
+            {this.props.user && (
+              <form onSubmit={this.submitHandler}>
+                {!!errors.length && (
+                  <div className="alert alert-danger" role="alert">
+                    {errors.map(error => (
+                      <p key={error}>{error}</p>
+                    ))}
+                  </div>
+                )}
+                <div className="form-group">
+                  <input
+                    className="form-control bg-light"
+                    type="text"
+                    placeholder="name"
+                    name="name"
+                    value={name}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="owner"
+                    name="owner"
+                    // value={owner}
+                    value={this.props.user.username}
+                    onChange={this.changeHandler}
+                    disabled
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="form-control  bg-light"
+                    type="text"
+                    placeholder="image_url"
+                    name="image_url"
+                    value={image_url}
+                    onChange={this.changeHandler}
+                  />
+                </div>
+                <input className="btn btn-primary" type="submit" />
+              </form>
             )}
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="name"
-                name="name"
-                value={name}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="owner"
-                name="owner"
-                // value={owner}
-                value={this.props.user.username}
-                onChange={this.changeHandler}
-                disabled
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="form-control"
-                type="text"
-                placeholder="image_url"
-                name="image_url"
-                value={image_url}
-                onChange={this.changeHandler}
-              />
-            </div>
-            <input className="btn btn-primary" type="submit" />
-          </form>
-        )}
+          </div>
+        </div>
       </div>
     );
   }
