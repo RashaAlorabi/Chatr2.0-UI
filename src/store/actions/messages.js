@@ -50,3 +50,15 @@ export const fetchMessagesByTimeStamp = (channelID, timestamp) => {
     });
   };
 };
+
+export const fetchUserList = () => {
+  return async dispatch => {
+    const request = await instance.get(`channels/user/`);
+    const response = request.data;
+
+    dispatch({
+      type: actionTypes.FETCH_USER_LIST,
+      payload: response
+    });
+  };
+};

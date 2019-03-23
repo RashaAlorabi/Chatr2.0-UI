@@ -7,7 +7,8 @@ import {
   faSignOutAlt,
   faSignInAlt,
   faUserPlus,
-  faUserCircle
+  faUserCircle,
+  faListUl
 } from "@fortawesome/free-solid-svg-icons";
 
 // Actions
@@ -37,10 +38,19 @@ class AuthButton extends Component {
     } else {
       buttons = (
         <div>
-          <li className="nav-item">
-            <span className="nav-link text-danger " onClick={this.props.logout}>
+          <li />
+          <li className="nav-item float-left">
+            <span className="float-left">
+              <Link to="/private" className="text-primary">
+                <FontAwesomeIcon icon={faListUl} /> Channels
+              </Link>
+            </span>
+            <span
+              className="nav-item text-danger float-left "
+              onClick={this.props.logout}
+            >
               <FontAwesomeIcon icon={faUserCircle} />{" "}
-              <span className="navbar-text mr-2 text-primary">
+              <span className=" text-primary mr-3">
                 {this.props.user.username}
               </span>
               <FontAwesomeIcon icon={faSignOutAlt} /> Logout
