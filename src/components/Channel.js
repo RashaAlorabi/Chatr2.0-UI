@@ -8,7 +8,7 @@ import {
   faEye,
   faUsers,
   faPlusSquare,
-  faCheckCircle
+  faTrashAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 class Channel extends Component {
@@ -127,7 +127,7 @@ class Channel extends Component {
               </div>
             </div>
             <div
-              className=" text-white bg-danger rounded-bottom "
+              className=" text-white bg-info rounded-bottom "
               style={{ maxWidth: 120, height: 100 }}
             >
               <FontAwesomeIcon className="fa-2x mt-2 " icon={faUsers} />
@@ -147,18 +147,19 @@ class Channel extends Component {
             </div>
             {channel.members.includes(this.props.user.user_id) ? (
               <div
-                className=" text-white  ml-2 bg-success rounded-bottom  "
-                style={{ maxWidth: 130, height: 80 }}
+                className=" text-white  ml-2 bg-danger rounded-bottom text-center "
+                onClick={() => this.props.unjoinChannel(channel.id)}
+                style={{ maxWidth: 140, height: 80 }}
               >
                 <FontAwesomeIcon
                   className="fa-2x mt-1 ml-1 "
-                  icon={faCheckCircle}
+                  icon={faTrashAlt}
                 />
                 <h6
                   className="text-center mt-4"
                   style={{ fontFamily: "monospace" }}
                 >
-                  Joind
+                  Unjoin
                 </h6>
               </div>
             ) : (
@@ -203,6 +204,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onjoinChannel: channelID => dispatch(actionCreators.joinChannel(channelID)),
+    unjoinChannel: channelID =>
+      dispatch(actionCreators.unjoinChannel(channelID)),
     onFetchChannels: () => dispatch(actionCreators.fetchChannels())
   };
 };

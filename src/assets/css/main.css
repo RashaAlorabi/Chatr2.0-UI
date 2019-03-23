@@ -848,3 +848,53 @@ input {
 .main {
   margin-left: 200px; /* Same as the width of the sidenav */
 }
+.right {
+  float: right;
+  margin-left: 20px;
+  margin-right: 0;
+}
+.msg_a {
+  position: relative;
+  background: #fde4ce;
+  padding: 10px;
+  min-height: 10px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  border-radius: 20px;
+  /* border-radius: 1.3rem 1.4rem 1.4rem 0.3rem; */
+  border-top-left-radius: 0;
+}
+.msg_a:before {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: 10px solid;
+  border-color: transparent black transparent transparent;
+  left: -19px;
+  top: 1px;
+}
+
+.msg_b {
+  color: white;
+  background: #c36674;
+  padding: 10px;
+  min-height: 15px;
+  margin-bottom: 5px;
+  position: relative;
+  margin-left: 10px;
+  border-radius: 20px;
+  word-wrap: break-word;
+
+  border-bottom-right-radius: 0;
+}
+.msg_b:after {
+  content: "";
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  border: 7px solid;
+  border-color: transparent transparent transparent #c36674;
+  right: -14px;
+  top: 36px;
+}

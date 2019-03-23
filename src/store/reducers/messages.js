@@ -1,6 +1,7 @@
 import * as actionTypes from "../actions/actionTypes";
 const initialState = {
-  channel_Messages: []
+  channel_Messages: [],
+  User_List: []
 };
 
 const reducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         channel_Messages: state.channel_Messages.concat(action.payload)
+      };
+    case actionTypes.FETCH_USER_LIST:
+      return {
+        ...state,
+        User_List: state.User_List.concat(action.payload)
       };
 
     default:

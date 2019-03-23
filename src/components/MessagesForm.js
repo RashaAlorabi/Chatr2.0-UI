@@ -4,6 +4,12 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 // import "react-notifications/lib/notifications.css";
 import SideNav from "../../src/components/Navigation/SideNav";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlusSquare,
+  faUser,
+  faUsers
+} from "@fortawesome/free-solid-svg-icons";
 
 class MessagesForm extends Component {
   timer = 0;
@@ -22,19 +28,30 @@ class MessagesForm extends Component {
   //   document.getElementById("main").style.marginLeft = "0";
   //   document.body.style.backgroundColor = "white";
   // };
+
+  messagesEnd = React.createRef();
+
   componentDidMount() {
+    this.scrollToBottom();
+    this.props.onfetchUserList();
     this.props.onFetchChannelMessage(this.props.match.params.channelID);
     this.FetchMessagesByTimeStamp();
+    if (this.props.user) {
+      this.props.onFetchChannels();
+    }
 
     // call once
   }
   componentDidUpdate(prevState) {
+    this.scrollToBottom();
+    if (prevState.messages !== this.props.messages) {
+      this.props.onFetchChannelMessage(this.props.match.params.channelID);
+    }
     if (
       prevState.match.params.channelID !== this.props.match.params.channelID
     ) {
       this.props.onFetchChannelMessage(this.props.match.params.channelID);
       this.FetchMessagesByTimeStamp();
-      // this.props.onFetchChannels();
     }
   }
   ChangeHandler = event => {
@@ -43,6 +60,7 @@ class MessagesForm extends Component {
 
   submitHandler = event => {
     event.preventDefault();
+
     this.props.onPostChannelMessage(
       this.state,
       this.props.match.params.channelID,
@@ -66,35 +84,68 @@ class MessagesForm extends Component {
     }
   };
   resetForm = () => this.setState({ message: "" });
-
+  scrollToBottom = () => {
+    this.messagesEnd.current.scrollIntoView({ behavior: "smooth" });
+  };
   render() {
     const channel = this.props.channels.find(
       channel => channel.id === +this.props.match.params.channelID
     );
 
+    const UserList = this.props.userList.filter(user =>
+      channel.members.includes(user.id)
+    );
+    console.log(channel);
+
     const errors = this.props.errors;
     if (!this.props.user) return <Redirect to="/" />;
     const messages = this.props.messages.map(message => {
       return (
-        <li
-          key={message.id}
-          className="collection-item avatar ml-5 tabel-hover"
-        >
-          <img
-            src="//robohash.org/107378?set=set2&bgset=bg2&size=70x70"
-            alt="107378"
-            className="circle"
-          />
-          <span className="title">{message.username}</span>
-          <p>
-            <i className="prefix mdi-action-alarm" />
+        <div className="ml-3 mr-3">
+          {this.props.user.username === message.username ? (
+            <div className="float-right  ">
+              {/* <img
+                src="//robohash.org/107378?set=set2&bgset=bg2&size=70x70"
+                alt="107378"
+                className="circle float-right "
+              /> */}
+              {/* <span className="title float-right ml-3 text-light ">Me</span> */}
+              {/* <i className="prefix mdi-action-alarm float-right" /> */}
+              {/* <span className="message-date text-light float-right ">
+                {message.timestamp}
+              </span> */}
+              <div
+                key={message.id}
+                className="  ml-5  mt-3  pl-1 text-right float-right   msg_b"
+                style={{ width: 400, height: 50 }}
+              >
+                <p>
+                  <span>{message.message}</span>{" "}
+                </p>{" "}
+              </div>
+            </div>
+          ) : (
+            <div
+              className="collection-item  bg-secondary  text-light ml-5 mt-4 float-left  msg_a"
+              style={{ width: 400, height: 80 }}
+            >
+              {/* <img
+                src="//robohash.org/107378?set=set2&bgset=bg2&size=70x70"
+                alt="107378"
+                className="circle float-left"
+              /> */}
+              <span className="title">{message.username}</span>
+              <p>
+                {/* <i className="prefix mdi-action-alarm" />
 
-            <span className="message-date">{message.timestamp}</span>
+                <span className="message-date">{message.timestamp}</span> */}
 
-            <br />
-            <span>{message.message}</span>
-          </p>
-        </li>
+                <br />
+                <span>{message.message}</span>
+              </p>
+            </div>
+          )}
+        </div>
       );
     });
 
@@ -102,31 +153,69 @@ class MessagesForm extends Component {
       <div>
         <div id="mySidenav mt-5" className="sidenav">
           <br />
+          <ul
+            className=" pb-3 text-light"
+            style={{ borderBottom: "10px solid white" }}
+          >
+            <li>
+              <FontAwesomeIcon
+                className="fa-2x mt-5 ml-3 mr-2 "
+                icon={faUsers}
+              />
+              <span style={{ fontSize: 20 }}>Members:</span>
+            </li>
+          </ul>
+
           <br />
 
-          <a className="closebtn">&times;</a>
-          {channel.members.map(member => (
-            <h1 href="#">{member}</h1>
+          {UserList.map(user => (
+            <ul className=" ml-2 ">
+              <li
+                className="text-light p-1"
+                style={{
+                  borderTopLeftRadius: 70,
+                  borderBottomLeftRadius: 70,
+                  fontFamily: "monospace",
+                  fontSize: 18,
+
+                  borderBottom: "10px solid white"
+                }}
+              >
+                {" "}
+                <FontAwesomeIcon
+                  icon={faUser}
+                  className="fa-2x mt-1 ml-1 text-success "
+                />{" "}
+                {user.username}
+              </li>
+            </ul>
           ))}
-
-          <a href="#">Clients</a>
-          <a href="#">Contact</a>
-
-          {/* <h1>
-            <p>{}</p>
-            ))}
-          </h1> */}
         </div>
 
         <span onclick="openNav()">open</span>
 
-        <div id="main">
-          <ul
-            className="collection mr-5"
-            style={{ marginLeft: 160, marginTop: 50 }}
+        <div id="main bg-light " style={{ height: 300 }}>
+          <div className="bg-light text-dark" style={{ height: 70 }}>
+            <h3
+              className="text-dark m-5 pt-3"
+              style={{ paddingLeft: 600, fontFamily: "OCR A Std, monospace" }}
+            >
+              Welcome {this.props.user.username} to the {channel.name}
+            </h3>
+          </div>
+          <div
+            className="collection bg-light container mr-5"
+            style={{
+              marginLeft: 400,
+              width: 950,
+              backgroundColor: "lightgrey",
+              WebkitBorderBottomLeftRadius: 50,
+              WebkitBorderBottomRightRadius: 50
+            }}
           >
             {messages}
-          </ul>
+          </div>
+          <div ref={this.messagesEnd} />
           <footer className="teal bg-secondary" style={{ marginLeft: 190 }}>
             {channel && channel.members.includes(this.props.user.user_id) ? (
               <form className="container" onSubmit={this.submitHandler}>
@@ -166,11 +255,15 @@ class MessagesForm extends Component {
                 </div>
               </form>
             ) : (
-              <div>
+              <div className="p-4" style={{ marginLeft: 400 }}>
                 <button
-                  className="btn btn-danger"
+                  className="btn-danger p-1 m-5"
                   onClick={() => this.props.onjoinChannel(channel.id)}
                 >
+                  <FontAwesomeIcon
+                    className="fa-1x ml-1 "
+                    icon={faPlusSquare}
+                  />
                   Join
                 </button>
               </div>
@@ -186,6 +279,7 @@ const mapStateToProps = state => {
     errors: state.errors.errors,
     user: state.auth.user,
     messages: state.messages.channel_Messages,
+    userList: state.messages.User_List,
     channels: state.channels.channels
   };
 };
@@ -203,6 +297,9 @@ const mapDispatchToProps = dispatch => {
     onFetchChannels: () => dispatch(actionCreators.fetchChannels()),
 
     onjoinChannel: channelID => dispatch(actionCreators.joinChannel(channelID)),
+
+    onfetchUserList: channelID =>
+      dispatch(actionCreators.fetchUserList(channelID)),
 
     resetErrors: () => dispatch(actionCreators.resetErrors())
   };

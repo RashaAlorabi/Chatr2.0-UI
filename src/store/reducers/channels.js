@@ -24,6 +24,13 @@ const reducer = (state = initialState, action) => {
           channel.id === action.payload.id ? action.payload : channel
         )
       };
+    case actionTypes.UNJOIN_CHANNEL:
+      return {
+        ...state,
+        channels: state.channels.map(channel =>
+          channel.id === action.payload.id ? action.payload : channel
+        )
+      };
 
     default:
       return state;

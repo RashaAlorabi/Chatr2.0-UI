@@ -14,10 +14,14 @@ import RegistrationForm from "./components/RegistrationForm";
 import SuperSecretPage from "./components/SuperSecretPage";
 import ChannelForm from "./components/ChannelForm";
 import MessagesForm from "./components/MessagesForm.js";
+// import { connect } from "react-redux";
+
+import * as actionCreators from "./store/actions";
 
 class App extends Component {
   componentDidMount() {
     main();
+    // this.props.onFetchChannels();
   }
 
   render() {
@@ -39,4 +43,10 @@ class App extends Component {
   }
 }
 
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     onFetchChannels: () => dispatch(actionCreators.fetchChannels())
+//     // onjoinChannel: channelID => dispatch(actionCreators.joinChannel(channelID))
+//   };
+// };
 export default App;

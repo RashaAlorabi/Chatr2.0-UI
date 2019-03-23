@@ -43,11 +43,25 @@ export const fetchChannels = () => {
 export const joinChannel = channelID => {
   return async dispatch => {
     try {
-      const request = await instance.put(`channels/${channelID}/update`);
+      const request = await instance.put(`channels/${channelID}/add`);
       const channel = request.data;
       console.log(channel);
       dispatch({
         type: actionTypes.JOIN_CHANNEL,
+        payload: channel
+      });
+    } catch (err) {
+      console.log(err.responce);
+    }
+  };
+};
+export const unjoinChannel = channelID => {
+  return async dispatch => {
+    try {
+      const request = await instance.put(`channels/${channelID}/delete`);
+      const channel = request.data;
+      dispatch({
+        type: actionTypes.UNJOIN_CHANNEL,
         payload: channel
       });
     } catch (err) {
