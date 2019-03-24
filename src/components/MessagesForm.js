@@ -16,28 +16,17 @@ class MessagesForm extends Component {
   state = {
     message: ""
   };
-  // openNav = () => {
-  //   document.getElementById("mySidenav").style.width = "250px";
-  //   document.getElementById("main").style.marginLeft = "250px";
-  //   document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-  // };
-
-  // /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
-  // closeNav = () => {
-  //   document.getElementById("mySidenav").style.width = "0";
-  //   document.getElementById("main").style.marginLeft = "0";
-  //   document.body.style.backgroundColor = "white";
-  // };
 
   messagesEnd = React.createRef();
 
   componentDidMount() {
     this.scrollToBottom();
-    this.props.onfetchUserList();
-    this.props.onFetchChannelMessage(this.props.match.params.channelID);
-    this.FetchMessagesByTimeStamp();
+
     if (this.props.user) {
       this.props.onFetchChannels();
+      this.props.onfetchUserList();
+      //this.props.onFetchChannelMessage(this.props.match.params.channelID);
+      this.FetchMessagesByTimeStamp();
     }
 
     // call once
@@ -50,7 +39,7 @@ class MessagesForm extends Component {
     if (
       prevState.match.params.channelID !== this.props.match.params.channelID
     ) {
-      this.props.onFetchChannelMessage(this.props.match.params.channelID);
+      // this.props.onFetchChannelMessage(this.props.match.params.channelID);
       this.FetchMessagesByTimeStamp();
     }
   }
@@ -104,16 +93,6 @@ class MessagesForm extends Component {
         <div className="ml-3 mr-3">
           {this.props.user.username === message.username ? (
             <div className="float-right  ">
-              {/* <img
-                src="//robohash.org/107378?set=set2&bgset=bg2&size=70x70"
-                alt="107378"
-                className="circle float-right "
-              /> */}
-              {/* <span className="title float-right ml-3 text-light ">Me</span> */}
-              {/* <i className="prefix mdi-action-alarm float-right" /> */}
-              {/* <span className="message-date text-light float-right ">
-                {message.timestamp}
-              </span> */}
               <div
                 key={message.id}
                 className="  ml-5  mt-3  pl-1 text-right float-right   msg_b"
@@ -129,17 +108,8 @@ class MessagesForm extends Component {
               className="collection-item  bg-secondary  text-light ml-5 mt-4 float-left  msg_a"
               style={{ width: 400, height: 80 }}
             >
-              {/* <img
-                src="//robohash.org/107378?set=set2&bgset=bg2&size=70x70"
-                alt="107378"
-                className="circle float-left"
-              /> */}
               <span className="title">{message.username}</span>
               <p>
-                {/* <i className="prefix mdi-action-alarm" />
-
-                <span className="message-date">{message.timestamp}</span> */}
-
                 <br />
                 <span>{message.message}</span>
               </p>
@@ -200,7 +170,8 @@ class MessagesForm extends Component {
               className="text-dark m-5 pt-3"
               style={{ paddingLeft: 600, fontFamily: "OCR A Std, monospace" }}
             >
-              Welcome {this.props.user.username} to the {channel.name}
+              Welcome {this.props.user.username} to the
+              {channel.name}
             </h3>
           </div>
           <div

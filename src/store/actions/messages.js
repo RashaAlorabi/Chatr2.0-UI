@@ -3,7 +3,8 @@ import axios from "axios";
 
 const instance = axios.create({
   // baseURL: "https://api-chatr.herokuapp.com/"
-  baseURL: "http://127.0.0.1:8000/"
+  //baseURL: "http://127.0.0.1:8000/"
+  baseURL: "http://138.68.80.119/"
 });
 export const fetchChannelMessage = channelID => {
   return async dispatch => {

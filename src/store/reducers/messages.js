@@ -28,7 +28,7 @@ const reducer = (state = initialState, action) => {
     case actionTypes.FETCH_USER_LIST:
       return {
         ...state,
-        User_List: state.User_List.concat(action.payload)
+        User_List: action.payload
       };
 
     default:
