@@ -25,7 +25,7 @@ class MessagesForm extends Component {
     if (this.props.user) {
       this.props.onFetchChannels();
       this.props.onfetchUserList();
-      //this.props.onFetchChannelMessage(this.props.match.params.channelID);
+      this.props.onFetchChannelMessage(this.props.match.params.channelID);
       this.FetchMessagesByTimeStamp();
     }
 
