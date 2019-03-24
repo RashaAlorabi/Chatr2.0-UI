@@ -12,10 +12,7 @@ const instance = axios.create({
 export const createChannels = (userData, history) => {
   return async dispatch => {
     try {
-      const res = await instance.defaults.baseURL.post(
-        "channels/create/",
-        userData
-      );
+      const res = await instance.post("channels/create/", userData);
       const newChannel = res.data; // return token encodeing actual user
       dispatch(resetErrors()); //send empty payload to reducer and reducer make erorr is empty
       dispatch({
@@ -34,7 +31,7 @@ export const createChannels = (userData, history) => {
 export const fetchChannels = () => {
   return async dispatch => {
     try {
-      const request = await instance.defaults.baseURL.get("channels/");
+      const request = await instance.get("channels/");
       const responce = request.data;
       dispatch({
         type: actionTypes.FETCH_CHANNELS,
@@ -47,9 +44,7 @@ export const fetchChannels = () => {
 export const joinChannel = channelID => {
   return async dispatch => {
     try {
-      const request = await instance.defaults.baseURL.put(
-        `channels/${channelID}/add`
-      );
+      const request = await instance.put(`channels/${channelID}/add`);
       const channel = request.data;
       console.log(channel);
       dispatch({
@@ -64,9 +59,7 @@ export const joinChannel = channelID => {
 export const unjoinChannel = channelID => {
   return async dispatch => {
     try {
-      const request = await instance.defaults.baseURL.put(
-        `channels/${channelID}/delete`
-      );
+      const request = await instance.put(`channels/${channelID}/delete`);
       const channel = request.data;
       dispatch({
         type: actionTypes.UNJOIN_CHANNEL,

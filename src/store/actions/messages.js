@@ -8,9 +8,7 @@ const instance = axios.create({
 });
 export const fetchChannelMessage = channelID => {
   return async dispatch => {
-    const request = await instance.defaults.baseURL.get(
-      `channels/${channelID}/`
-    );
+    const request = await instance.get(`channels/${channelID}/`);
 
     const response = request.data;
     dispatch({
@@ -23,10 +21,7 @@ export const fetchChannelMessage = channelID => {
 export const postChannelMessage = (userData, channelID, reset) => {
   return async dispatch => {
     try {
-      const res = await instance.defaults.baseURL.post(
-        `channels/${channelID}/send/`,
-        userData
-      );
+      const res = await instance.post(`channels/${channelID}/send/`, userData);
       const newMessage = res.data;
 
       dispatch({
@@ -45,7 +40,7 @@ export const postChannelMessage = (userData, channelID, reset) => {
 
 export const fetchMessagesByTimeStamp = (channelID, timestamp) => {
   return async dispatch => {
-    const request = await instance.defaults.baseURL.get(
+    const request = await instance.get(
       `channels/${channelID}/?latest=${timestamp}`
     );
     const response = request.data;
@@ -59,7 +54,7 @@ export const fetchMessagesByTimeStamp = (channelID, timestamp) => {
 
 export const fetchUserList = () => {
   return async dispatch => {
-    const request = await instance.defaults.baseURL.get(`channels/user/`);
+    const request = await instance.get(`channels/user/`);
     const response = request.data;
 
     dispatch({

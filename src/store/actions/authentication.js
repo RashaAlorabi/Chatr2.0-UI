@@ -50,7 +50,7 @@ export const loginAndSignup = (userData, history, type) => {
   console.log("[authentication.js] baseURL:", instance.defaults.baseURL);
   return async dispatch => {
     try {
-      const res = await instance.defaults.baseURL.post(type + "/", userData);
+      const res = await instance.post(type + "/", userData);
       const user = res.data;
       //console.log("[authentication.js] user", user);
       let decodedUser = jwt_decode(user.token);
