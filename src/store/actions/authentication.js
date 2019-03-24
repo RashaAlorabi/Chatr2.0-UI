@@ -47,7 +47,7 @@ export const checkForExpiredToken = () => {
 };
 
 export const loginAndSignup = (userData, history, type) => {
-  //console.log("[authentication.js]", type);
+  console.log("[authentication.js] baseURL:", instance.baseURL);
   return async dispatch => {
     try {
       const res = await instance.post(type + "/", userData);
